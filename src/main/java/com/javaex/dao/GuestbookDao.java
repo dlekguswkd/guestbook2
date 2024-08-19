@@ -86,7 +86,7 @@ public class GuestbookDao {
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, no);
-			pstmt.setInt(2, password);
+			pstmt.setString(2, password);
 
 			// 실행
 			count = pstmt.executeUpdate();
@@ -106,106 +106,7 @@ public class GuestbookDao {
 		
 	}
 	
-   
-   //사람 정보 수정하기 1명
-   public int updateGuest(GuestVo guestVo) {
-	   
-	   int count = -1;
-	   
-	   System.out.println("dao 수정");
-	   System.out.println(guestVo);
-	   
-	   this.getConnection();
-	   
-	   try {
-		   // 3. SQL문 준비 / 바인딩 / 실행
-		   // SQL문 준비
-		   String query="";
-		   query += " update person ";
-		   query += " set name = ?, ";
-		   query += "	  password = ?, ";
-		   query += "     content = ? ";
-		   query += "     reg_date = null ";
-		   query += " where no = ? ";
 
-		   
-		   // 바인딩
-		   pstmt = conn.prepareStatement(query);
-		   pstmt.setString(1, guestVo.getName());
-		   pstmt.setString(2, guestVo.getPassword());
-		   pstmt.setString(3, guestVo.getContent());
-		   pstmt.setInt(4, guestVo.getNo());
-		   
-		   
-		   // 실행
-		   count = pstmt.executeUpdate();
-
-		   
-		   // 4. 결과처리
-		   System.out.println(count +" 수정");
-
-		      
-	   } catch (SQLException e) {
-		   System.out.println("error:" + e);
-	   }
-	   
-	   this.close();
-	   
-	   return count;
-	   
-   }
-   
-   
-   
-   //사람 1명 정보 가져오기 (수정) -----------------------------------------------------
-   public GuestVo getGuestOne(int no) {
-	   
-	   GuestVo personVo = null;  
-	   
-	   this.getConnection();
-	   
-	   try {
-		   // 3. SQL문 준비 / 바인딩 / 실행
-		   // SQL문 준비
-		   String query="";
-		   query += " select person_id, ";
-		   query += "		name, ";
-		   query += "        hp, ";
-		   query += "        company ";
-		   query += " from person ";
-		   query += " where person_id = ? ";
-
-		   
-		   // 바인딩
-		   pstmt = conn.prepareStatement(query);
-		   pstmt.setInt(1, no);
-		   
-		   
-		   // 실행
-		   rs = pstmt.executeQuery();
-	
-		   
-		   // 4. 결과처리
-		   rs.next();
-		   
-		   int personId = rs.getInt("person_id");
-		   String name = rs.getString("name");
-		   String hp = rs.getString("hp");
-		   String company = rs.getString("company");
-		   
-		   personVo = new GuestVo(personId, name, hp, company);
-		      
-	   } catch (SQLException e) {
-		   System.out.println("error:" + e);
-	   }
-	   
-	   this.close();
-	   
-	   return personVo;
-	   
-   }
-   
-     
    //사람정보 저장 (등록)
    public int insertGuest(GuestVo guestVo) {
 	   
@@ -276,13 +177,13 @@ public class GuestbookDao {
 		   
 		   // 4. 결과처리
 		   while (rs.next()) {
-			   int id = rs.getInt("no");
+			   int no = rs.getInt("no");
 			   String name = rs.getString("name");
-			   String password = rs.getString("password");
+			   String pw = rs.getString("password");
 			   String content = rs.getString("content");
 			   String reg_date = rs.getString("reg_date");
 			   
-			   GuestVo personVo = new GuestVo(id, name, password, content, reg_date);
+			   GuestVo guestVo = new GuestVo(no, name, pw, content, reg_date);
 			  
 			   guestList.add(guestVo);
 			   

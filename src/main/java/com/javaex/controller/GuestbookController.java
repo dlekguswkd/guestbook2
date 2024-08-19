@@ -107,10 +107,10 @@ public class GuestbookController extends HttpServlet {
 			GuestbookDao guestbookDao = new GuestbookDao();
 			
 			//guestbookDao를 통해서 삭제 delete를 시킨다
-			phonebookDao.deletePerson(no, password);
+			guestbookDao.deleteGuest(no, password);
 			
 			//리다이렉트 시킨다
-			response.sendRedirect("/phonebook2/pbc?action=addList");
+			response.sendRedirect("/guestbook2/gbc?action=addList");
 			
 			
 		}else {					// action 없을때 -------------------

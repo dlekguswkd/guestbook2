@@ -3,39 +3,60 @@ package com.javaex.vo;
 public class GuestVo {
 
 	//필드
-	private int personId;
+	private int no;
 	private String name;
-	private String hp;
-	private String company;
+	private String password;
+	private String content;
+	private String regDate;
 
 	//생성자
 	public GuestVo() {
 		super();
 	}
+
+	public GuestVo(int no) {
+		super();
+		this.no = no;
+	}
+
+	public GuestVo(int no, String password) {
+		super();
+		this.no = no;
+		this.password = password;
+	}
+
+	public GuestVo(String name, String password, String content) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.content = content;
+	}
 	
-	public GuestVo(String name, String hp, String company) {
+	
+
+	public GuestVo(String name, String password, String content, String regDate) {
 		super();
 		this.name = name;
-		this.hp = hp;
-		this.company = company;
+		this.password = password;
+		this.content = content;
+		this.regDate = regDate;
 	}
 
-
-	public GuestVo(int personId, String name, String hp, String company) {
+	public GuestVo(int no, String name, String password, String content, String regDate) {
 		super();
-		this.personId = personId;
+		this.no = no;
 		this.name = name;
-		this.hp = hp;
-		this.company = company;
+		this.password = password;
+		this.content = content;
+		this.regDate = regDate;
 	}
 
-	//메소드 gs
-	public int getPersonId() {
-		return personId;
+	public int getNo() {
+		return no;
 	}
 
-	public void setPersonId(int personId) {
-		this.personId = personId;
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getName() {
@@ -46,28 +67,37 @@ public class GuestVo {
 		this.name = name;
 	}
 
-	public String getHp() {
-		return hp;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setHp(String hp) {
-		this.hp = hp;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getCompany() {
-		return company;
+	public String getContent() {
+		return content;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	//메소드 일반
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+
 	@Override
 	public String toString() {
-		return "PersonVo [personId=" + personId + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
+		return "GuestVo [no=" + no + ", name=" + name + ", password=" + password + ", content=" + content + ", regDate="
+				+ regDate + "]";
 	}
+	
+	
 	
 	
 }
-
