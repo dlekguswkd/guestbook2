@@ -6,14 +6,14 @@
 -- root 계정에서 실행
 -- --------------------------------------------
 
--- phonebook 계정생성 
+-- guestbook 계정생성 
 create user 'guestbook'@'%' identified by 'guestbook' ;
 
--- phonebook 권한 부여
+-- guestbook 권한 부여
 grant all privileges on guestbook_db.* to 'guestbook'@'%';
 
 -- guestbook_db 생성
-create database phonebook_db
+create database guestbook_db
 	default character set utf8mb4	-- • 이모티콘사용 케릭터셋
 	collate utf8mb4_general_ci		-- • 정렬규칙
 	default encryption='n'			-- • 암호화 no (기본값 생략가능)
@@ -72,7 +72,7 @@ where no = 2;
 -- 삭제
 delete from guest
 where no = 2
-and password=9999;
+and password= '9999';
 
 -- auto_increment 번호 변경
 alter table guest auto_increment = 2;

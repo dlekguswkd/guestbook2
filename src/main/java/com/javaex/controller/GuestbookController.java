@@ -54,10 +54,10 @@ public class GuestbookController extends HttpServlet {
 			String name = request.getParameter("name");
 			String pw = request.getParameter("password");
 			String content = request.getParameter("content");
-			String regDate = request.getParameter("regDate");
 			
-			//guestVo에서 4개만 있는 생성자 만들어주기
-			GuestVo guestVo = new GuestVo(name, pw, content, regDate);
+			
+			//guestVo에서 3개 있는 생성자 
+			GuestVo guestVo = new GuestVo(name, pw, content);
 			
 			
 			//Dao를 메모리에 올리기
